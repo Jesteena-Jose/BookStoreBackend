@@ -210,9 +210,9 @@ namespace BookStore.Models
             return books;
         }
 
-        public void UpdateBook(Book book)
+        public void UpdateBook(int BookId,Book book)
         {
-            comm.CommandText = "Update Book set CategoryId="+book.CategoryId+",Title='"+book.Title+"',Author='"+book.Author+"',ISBN='"+book.ISBN+"',Year="+book.Year+",Price="+book.Price+",Description='"+book.Description+"',Position='"+book.Position+"',Status="+book.Status+",Image='"+book.Image+"' where BookId="+book.BookId;
+            comm.CommandText = "Update Book set CategoryId="+book.CategoryId+",Title='"+book.Title+"',Author='"+book.Author+"',ISBN='"+book.ISBN+"',Year="+book.Year+",Price="+book.Price+",Description='"+book.Description+"',Position='"+book.Position+"',Status="+book.Status+",Image='"+book.Image+"' where BookId="+BookId;
             comm.Connection = conn;
             conn.Open();
             int row = comm.ExecuteNonQuery();

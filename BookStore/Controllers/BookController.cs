@@ -72,21 +72,21 @@ namespace BookStore.Controllers
             return Ok(data);
         }
         [HttpPost]
-        public IHttpActionResult PostAdd(Book book)
+        public IHttpActionResult Add(Book book)
         {
             var data = repository.AddBook(book);
             return Ok(data);
         }
-        [HttpPost]
-        public IHttpActionResult PostDelete(int BookId)
+        [HttpDelete]
+        public IHttpActionResult Delete(int BookId)
         {
             repository.DeleteBook(BookId);
             return Ok();
         }
-        [HttpPost]
-        public IHttpActionResult PostUpdate(Book book)
+        [HttpPut]
+        public IHttpActionResult Update(int BookId,Book book)
         {
-            repository.UpdateBook(book);
+            repository.UpdateBook(BookId,book);
             return Ok();
         }
     }

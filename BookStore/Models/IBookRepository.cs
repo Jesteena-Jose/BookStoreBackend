@@ -15,7 +15,7 @@ namespace BookStore.Models
         Book GetBookByISBN(string ISBN);
         Book GetBookById(int BookId);
         Book AddBook(Book book);
-        void UpdateBook(Book book);
+        void UpdateBook(int BookId,Book book);
         void DeleteBook(int BookId);
     }
 }
