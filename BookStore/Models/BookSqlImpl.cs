@@ -21,7 +21,7 @@ namespace BookStore.Models
 
         public Book AddBook(Book book)
         {
-            comm.CommandText = "insert into Book values('" + book.CategoryId + "','" + book.Title + "','" + book.Author + "','" + book.ISBN + "','" + book.Year + "','" + book.Price + "','" + book.Description + "','" + book.Position + "','" + book.Status + "','" + book.Image + "')";
+            comm.CommandText = "insert into Book values(" + book.CategoryId + ",'" + book.Title + "','" + book.Author + "','" + book.ISBN + "'," + book.Year + "," + book.Price + ",'" + book.Description + "','" + book.Position + "','" + book.Status + "','" + book.Image + "')";
             comm.Connection = conn;
             conn.Open();
             int row = comm.ExecuteNonQuery();

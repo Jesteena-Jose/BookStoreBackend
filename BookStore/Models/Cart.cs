@@ -11,6 +11,7 @@ namespace BookStore.Models
         {
 
         }
+
         public Cart(int cartId, DateTime createdAt, int totalPrice, int addressId, int userId)
         {
             CartId = cartId;
@@ -25,8 +26,6 @@ namespace BookStore.Models
         public int TotalPrice { get; set; }
         public int AddressId { get; set; }
         public int UserId { get; set; }
-
-      
 
     }
 }

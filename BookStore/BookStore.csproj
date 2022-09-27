@@ -87,6 +87,15 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CartItemController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CouponController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrderItemController.cs" />
+    <Compile Include="Controllers\ShippingAddressController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -94,14 +103,32 @@
     <Compile Include="Models\BookSqlImpl.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\CartItemSqlImpl.cs" />
+    <Compile Include="Models\CartSqlImpl.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CategorySqlImpl.cs" />
     <Compile Include="Models\Coupon.cs" />
+    <Compile Include="Models\CouponSqlImpl.cs" />
     <Compile Include="Models\IBookRepository.cs" />
+    <Compile Include="Models\ICartItemRepository.cs" />
+    <Compile Include="Models\ICartRepository.cs" />
+    <Compile Include="Models\ICategoryRepository.cs" />
+    <Compile Include="Models\ICouponRepository.cs" />
+    <Compile Include="Models\IOrderItemRepository.cs" />
+    <Compile Include="Models\IOrderRepository.cs" />
+    <Compile Include="Models\IShippingAddressRepository.cs" />
+    <Compile Include="Models\IUserRepository.cs" />
+    <Compile Include="Models\IWishlistRepository.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderItem.cs" />
+    <Compile Include="Models\OrderItemSqlImpl.cs" />
+    <Compile Include="Models\OrderSqlImpl.cs" />
     <Compile Include="Models\ShippingAddress.cs" />
+    <Compile Include="Models\ShippingAddressSqlImpl.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserSqlImpl.cs" />
     <Compile Include="Models\Wishlist.cs" />
+    <Compile Include="Models\WishlistSqlImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

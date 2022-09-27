@@ -8,7 +8,7 @@ namespace BookStore.Models
     public class Category
     {
         public Category() { }
-        public Category(int categoryId, string categoryName, string description, byte[] image, bool status, string position, DateTime createdAt)
+        public Category(int categoryId, string categoryName, string description, string image, int status, string position, DateTime createdAt)
         {
             CategoryId = categoryId;
             CategoryName = categoryName;
@@ -22,8 +22,8 @@ namespace BookStore.Models
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string Description { get; set; }
-        public byte[] Image { get; set; }
-        public bool Status { get; set; }
+        public string Image { get; set; }
+        public int Status { get; set; }
         public string Position { get; set; }
         public DateTime CreatedAt { get; set; }
        
