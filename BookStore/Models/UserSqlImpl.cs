@@ -20,7 +20,7 @@ namespace BookStore.Models
 
         public User AddUser(User user)
         {
-            comm.CommandText = "insert into User Values('"+user.Name+"','"+user.Email+"','"+user.Password+"','"+user.PhoneNo+"')";
+            comm.CommandText = "insert into [User] Values('"+user.Name+"','"+user.Email+"','"+user.Password+"','"+user.PhoneNo+"')";
             comm.Connection = conn;
             conn.Open();
             int row = comm.ExecuteNonQuery();
@@ -34,7 +34,7 @@ namespace BookStore.Models
 
         public void DeleteUser(int UserId)
         {
-            comm.CommandText = "Delete from User where UserId=" + UserId;
+            comm.CommandText = "Delete from [User] where UserId=" + UserId;
             comm.Connection = conn;
             conn.Open();
             int row = comm.ExecuteNonQuery();
@@ -44,7 +44,7 @@ namespace BookStore.Models
         public List<User> GetUsers()
         {
             List<User> users = new List<User>();
-            comm.CommandText = "select * from Users ";
+            comm.CommandText = "select * from [User]";
             conn.Open();
             comm.Connection = conn;
             SqlDataReader reader = comm.ExecuteReader();
@@ -64,7 +64,7 @@ namespace BookStore.Models
 
         public void UpdateUser(int UserId, User user)
         {
-            comm.CommandText = "Update User set Name='"+user.Name+"',Email='"+user.Email+"',Password='"+user.Password+"',PhoneNo="+user.PhoneNo+" where UserId=" + UserId;
+            comm.CommandText = "Update [User] set Name='"+user.Name+"',Email='"+user.Email+"',Password='"+user.Password+"',PhoneNo="+user.PhoneNo+" where UserId=" + UserId;
             comm.Connection = conn;
             conn.Open();
             int row = comm.ExecuteNonQuery();

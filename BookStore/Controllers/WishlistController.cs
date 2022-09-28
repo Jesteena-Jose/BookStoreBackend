@@ -18,7 +18,7 @@ namespace BookStore.Controllers
         [HttpGet]
         public IHttpActionResult Get(int UserId)
         {
-            var data = repository.GetWishlists(UserId);
+            var data = repository.GetWishlistBooks(UserId);
             return Ok(data);
         }
         [HttpPost]

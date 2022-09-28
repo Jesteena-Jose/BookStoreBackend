@@ -22,4 +22,17 @@ namespace BookStore.Models
         public int BookId { get; set; }
         public int OrderId { get; set; }
     }
+    public class OrderBooks
+    {
+        public OrderBooks(Order order, OrderItem orderItem, Book book)
+        {
+            this.order = order;
+            this.orderItem = orderItem;
+            this.book = book;
+        }
+
+        public Order order { get; set; }
+        public OrderItem orderItem { get; set; }
+        public Book book { get; set; }
+    }
 }

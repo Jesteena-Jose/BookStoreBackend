@@ -12,6 +12,6 @@ namespace BookStore.Models
         CartItem AddCartItem(CartItem cartItem);
         void UpdateCartItem(int CartItemId, CartItem cartItem);
         void DeleteCartItem(int CartItemId);
-        List<Book> GetBooksInCart(int CartId);
+        List<CartBooks> GetBooksInCart(int CartId);
     }
 }

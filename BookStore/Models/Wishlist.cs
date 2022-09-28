@@ -22,4 +22,15 @@ namespace BookStore.Models
         public int BookId { get; set; }
         public int UserId { get; set; }
     }
+    public class WishlistBook
+    {
+        public WishlistBook(Wishlist wishlist, Book book)
+        {
+            this.wishlist = wishlist;
+            this.book = book;
+        }
+
+        public Wishlist wishlist { get; set; }
+        public Book book { get; set; }
+    }
 }

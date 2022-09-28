@@ -13,7 +13,7 @@ namespace BookStore.Models
             OrderId = orderId;
             OrderDate = orderDate;
             TotalPrice = totalPrice;
-            Status = status;
+            OrderStatus = status;
             DeliveryDate = deliveryDate;
             AddressId = addressId;
             UserId = userId;
@@ -22,7 +22,7 @@ namespace BookStore.Models
         public int OrderId { get; set; }
         public DateTime OrderDate { get; set; }
         public int TotalPrice { get; set; }
-        public string Status { get; set; }
+        public string OrderStatus { get; set; }
         public DateTime DeliveryDate { get; set; }
         public int AddressId { get; set; }
         public int UserId { get; set; }

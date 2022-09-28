@@ -40,6 +40,41 @@ namespace BookStore.Models
             conn.Close();
         }
 
+        public List<WishlistBook> GetWishlistBooks(int GUserId)
+        {
+            List<WishlistBook> wishlistbooks = new List<WishlistBook>();
+            Wishlist wishlist;
+            Book book;
+            comm.CommandText = "select * from Wishlist W,Book B where W.BookId=B.BookId and W.UserId=" + GUserId;
+            conn.Open();
+            comm.Connection = conn;
+            SqlDataReader reader = comm.ExecuteReader();
+            while (reader.Read())
+            {
+                int WishlistId = Convert.ToInt32(reader["WishlistId"]);
+                int BookId = Convert.ToInt32(reader["BookId"]);
+                int UserId = Convert.ToInt32(reader["UserId"]);
+                wishlist=new Wishlist(WishlistId, BookId, UserId);
+
+                int CategoryId = Convert.ToInt32(reader["CategoryId"]);
+                string Title = reader["Title"].ToString();
+                string Author = reader["Author"].ToString();
+                string ISBN = reader["ISBN"].ToString();
+                int Year = Convert.ToInt32(reader["Year"]);
+                int Price = Convert.ToInt32(reader["Price"]);
+                string Description = reader["Description"].ToString();
+                string Position = reader["Position"].ToString();
+                int Status = Convert.ToInt32(reader["Status"]);
+                string Image = reader["Image"].ToString();
+                book = new Book(BookId, CategoryId, Title, Author, ISBN, Year, Price, Description, Position, Status, Image);
+
+                wishlistbooks.Add(new WishlistBook(wishlist, book));
+
+            }
+            conn.Close();
+            return wishlistbooks;
+        }
+
         public List<Wishlist> GetWishlists(int GUserId)
         {
             List<Wishlist> wishlists = new List<Wishlist>();

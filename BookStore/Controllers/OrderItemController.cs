@@ -21,6 +21,18 @@ namespace BookStore.Controllers
             var data = repository.GetOrderItems(OrderId);
             return Ok(data);
         }
+        [HttpGet]
+        public IHttpActionResult GetByUser(int UserId)
+        {
+            var data = repository.GetAllOrderBooks(UserId);
+            return Ok(data);
+        }
+        [HttpGet]
+        public IHttpActionResult GetNew(int UserId,int status)
+        {
+            var data = repository.GetNewOrderBooks(UserId, status);
+            return Ok(data);
+        }
         [HttpPost]
         public IHttpActionResult Add(OrderItem orderItem)
         {

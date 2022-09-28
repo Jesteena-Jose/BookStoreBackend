@@ -20,7 +20,7 @@ namespace BookStore.Models
 
         public Order AddOrder(Order order)
         {
-            comm.CommandText = "insert into Order(TotalPrice,Status,DeliveryDate,AddressId,UserId) Values("+order.TotalPrice+",'"+order.Status+"','"+order.DeliveryDate+"',"+order.AddressId+","+order.UserId+")";
+            comm.CommandText = "insert into [Order](TotalPrice,OrderStatus,DeliveryDate,AddressId,UserId) Values("+order.TotalPrice+",'"+order.OrderStatus+"','"+order.DeliveryDate+"',"+order.AddressId+","+order.UserId+")";
             comm.Connection = conn;
             conn.Open();
             int row = comm.ExecuteNonQuery();
@@ -34,7 +34,7 @@ namespace BookStore.Models
 
         public void DeleteOrder(int OrderId)
         {
-            comm.CommandText = "Delete from Order where OrderId=" + OrderId;
+            comm.CommandText = "Delete from [Order] where OrderId=" + OrderId;
             comm.Connection = conn;
             conn.Open();
             int row = comm.ExecuteNonQuery();
@@ -44,7 +44,7 @@ namespace BookStore.Models
         public List<Order> GetOrders(int GUserId)
         {
             List<Order> orders = new List<Order>();
-            comm.CommandText = "select * from Order Where UserId=" + GUserId;
+            comm.CommandText = "select * from [Order] Where UserId=" + GUserId;
             conn.Open();
             comm.Connection = conn;
             SqlDataReader reader = comm.ExecuteReader();
@@ -53,7 +53,7 @@ namespace BookStore.Models
                 int OrderId = Convert.ToInt32(reader["OrderId"]);
                 DateTime OrderDate = Convert.ToDateTime(reader["OrderDate"]);
                 int TotalPrice = Convert.ToInt32(reader["TotalPrice"]);
-                string Status = reader["Status"].ToString();
+                string Status = reader["OrderStatus"].ToString();
                 DateTime DeliveryDate = Convert.ToDateTime(reader["DeliveryDate"]);
                 int AddressId = Convert.ToInt32(reader["AddressId"]);
                 int UserId = Convert.ToInt32(reader["UserId"]);
@@ -66,7 +66,7 @@ namespace BookStore.Models
 
         public void UpdateOrder(int OrderId, Order order)
         {
-            comm.CommandText = "Update Order set TotalPrice="+order.TotalPrice+",Status='"+order.Status+"',DeliveryDate='"+order.DeliveryDate+"',AddressId="+order.AddressId+"  where OrderId=" + OrderId;
+            comm.CommandText = "Update [Order] set TotalPrice="+order.TotalPrice+",OrderStatus='"+order.OrderStatus+"',DeliveryDate='"+order.DeliveryDate+"',AddressId="+order.AddressId+"  where OrderId=" + OrderId;
             comm.Connection = conn;
             conn.Open();
             int row = comm.ExecuteNonQuery();

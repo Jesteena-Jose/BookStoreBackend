@@ -18,7 +18,7 @@ namespace BookStore.Controllers
         [HttpGet]
         public IHttpActionResult Get(int CartId)
         {
-            var data = repository.GetCartItems(CartId);
+            var data = repository.GetBooksInCart(CartId);
             return Ok(data);
         }
         [HttpPost]

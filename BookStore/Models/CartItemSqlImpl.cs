@@ -40,10 +40,12 @@ namespace BookStore.Models
             conn.Close();
         }
 
-        public List<Book> GetBooksInCart(int CartId)
+        public List<CartBooks> GetBooksInCart(int GCartId)
         {
-            List<Book> books = new List<Book>();
-            comm.CommandText = "select * from Book where BookId=(select BookId from CartItem where CartId="+CartId+")";
+            List<CartBooks> cartBooks = new List<CartBooks>();
+            Book book;
+            CartItem cartItem;
+            comm.CommandText = "select * from Book B,CartItem C where B.BookId=C.BookId AND CartId=" + GCartId;
             conn.Open();
             comm.Connection = conn;
             SqlDataReader reader = comm.ExecuteReader();
@@ -60,12 +62,15 @@ namespace BookStore.Models
                 string Position = reader["Position"].ToString();
                 int Status = Convert.ToInt32(reader["Status"]);
                 string Image = reader["Image"].ToString();
-                books.Add(new Book(BookId, CategoryId, Title, Author, ISBN, Year, Price, Description, Position, Status, Image));
-
+                book=new Book(BookId, CategoryId, Title, Author, ISBN, Year, Price, Description, Position, Status, Image);
+                int CartItemId = Convert.ToInt32(reader["CartItemId"]);
+                int CartId = Convert.ToInt32(reader["CartId"]);
+                cartItem = new CartItem(CartItemId, BookId, CartId);
+                cartBooks.Add(new CartBooks(cartItem, book));
 
             }
             conn.Close();
-            return books;
+            return cartBooks;
         }
 
         public List<CartItem> GetCartItems(int GCartId)
@@ -79,7 +84,7 @@ namespace BookStore.Models
             {
                 int CartItemId = Convert.ToInt32(reader["CartItemId"]);
                 int BookId = Convert.ToInt32(reader["BookId"]);
-                int CartId = Convert.ToInt32(reader["Cart"]);
+                int CartId = Convert.ToInt32(reader["CartId"]);
                 carts.Add(new CartItem(CartItemId,BookId,CartId));
                 
             }

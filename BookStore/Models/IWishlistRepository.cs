@@ -9,6 +9,7 @@ namespace BookStore.Models
     internal interface IWishlistRepository
     {
         List<Wishlist> GetWishlists(int UserId);
+        List<WishlistBook> GetWishlistBooks(int UserId);
         Wishlist AddWishlist(Wishlist wishlist);
         void DeleteWishlist(int WishlistId);
         void UpdateWishlist(int WishlistId, Wishlist wishlist);
