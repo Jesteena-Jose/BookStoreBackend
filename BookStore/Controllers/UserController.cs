@@ -21,6 +21,12 @@ namespace BookStore.Controllers
             var data = repository.GetUsers();
             return Ok(data);
         }
+        [HttpGet]
+        public IHttpActionResult Get(string Email,string Password)
+        {
+            var data = repository.LogIn(Email, Password);
+            return Ok(data);
+        }
         [HttpPost]
         public IHttpActionResult Add(User user)
         {

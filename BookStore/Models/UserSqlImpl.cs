@@ -23,13 +23,23 @@ namespace BookStore.Models
             comm.CommandText = "insert into [User] Values('"+user.Name+"','"+user.Email+"','"+user.Password+"','"+user.PhoneNo+"')";
             comm.Connection = conn;
             conn.Open();
-            int row = comm.ExecuteNonQuery();
-            conn.Close();
-            if (row > 0)
+            try
             {
-                return user;
+                int row = comm.ExecuteNonQuery();
+                if (row > 0)
+                {
+                    return user;
+                }
+                return null;
             }
-            return null;
+            catch(Exception e)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public void DeleteUser(int UserId)
@@ -60,6 +70,27 @@ namespace BookStore.Models
             }
             conn.Close();
             return users;
+        }
+
+        public User LogIn(string GEmail, string GPassword)
+        {
+            User user;
+            comm.CommandText = "select * from [User] where Email='"+GEmail+"' and Password='"+GPassword+"'";
+            conn.Open();
+            comm.Connection = conn;
+            SqlDataReader reader = comm.ExecuteReader();
+            while (reader.Read())
+            {
+                int UserId = Convert.ToInt32(reader["UserId"]);
+                string Name = reader["Name"].ToString();
+                string Email = reader["Email"].ToString();
+                string Password = reader["Password"].ToString();
+                int PhoneNo = Convert.ToInt32(reader["PhoneNo"]);
+                user=new User(UserId, Name, Email, Password, PhoneNo);
+                return user;
+            }
+            conn.Close();
+            return null;
         }
 
         public void UpdateUser(int UserId, User user)
