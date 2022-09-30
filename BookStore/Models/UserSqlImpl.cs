@@ -20,7 +20,7 @@ namespace BookStore.Models
 
         public User AddUser(User user)
         {
-            comm.CommandText = "insert into [User] Values('"+user.Name+"','"+user.Email+"','"+user.Password+"','"+user.PhoneNo+"')";
+            comm.CommandText = "insert into [User] Values('"+user.Name+"','"+user.Email+"','"+user.Password+"','"+user.ActiveStatus+"','"+user.PhoneNo+"')";
             comm.Connection = conn;
             conn.Open();
             try
@@ -64,8 +64,9 @@ namespace BookStore.Models
                 string Name = reader["Name"].ToString();
                 string Email = reader["Email"].ToString();
                 string Password = reader["Password"].ToString();
+                string ActiveStatus = reader["ActiveStatus"].ToString();
                 int PhoneNo = Convert.ToInt32(reader["PhoneNo"]);
-                users.Add(new User(UserId,Name,Email,Password,PhoneNo));
+                users.Add(new User(UserId,Name,Email,Password,ActiveStatus,PhoneNo));
 
             }
             conn.Close();
@@ -85,8 +86,9 @@ namespace BookStore.Models
                 string Name = reader["Name"].ToString();
                 string Email = reader["Email"].ToString();
                 string Password = reader["Password"].ToString();
+                string ActiveStatus = reader["ActiveStatus"].ToString();
                 int PhoneNo = Convert.ToInt32(reader["PhoneNo"]);
-                user=new User(UserId, Name, Email, Password, PhoneNo);
+                user=new User(UserId, Name, Email, Password,ActiveStatus, PhoneNo);
                 return user;
             }
             conn.Close();
@@ -95,7 +97,7 @@ namespace BookStore.Models
 
         public void UpdateUser(int UserId, User user)
         {
-            comm.CommandText = "Update [User] set Name='"+user.Name+"',Email='"+user.Email+"',Password='"+user.Password+"',PhoneNo="+user.PhoneNo+" where UserId=" + UserId;
+            comm.CommandText = "Update [User] set Name='"+user.Name+"',Email='"+user.Email+"',Password='"+user.Password+"',ActiveStatus='"+user.ActiveStatus+"',PhoneNo="+user.PhoneNo+" where UserId=" + UserId;
             comm.Connection = conn;
             conn.Open();
             int row = comm.ExecuteNonQuery();

@@ -11,12 +11,13 @@ namespace BookStore.Models
         {
         }
 
-        public User(int userId, string name, string email, string password, int phoneNo)
+        public User(int userId, string name, string email, string password,string activestatus, int phoneNo)
         {
             UserId = userId;
             Name = name;
             Email = email;
             Password = password;
+            ActiveStatus = activestatus;
             PhoneNo = phoneNo;
         }
 
@@ -25,5 +26,6 @@ namespace BookStore.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public int PhoneNo { get; set; }
+        public string ActiveStatus { get; set; }
     }
 }

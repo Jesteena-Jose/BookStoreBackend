@@ -20,7 +20,7 @@ namespace BookStore.Models
 
         public Coupon AddCoupon(Coupon coupon)
         {
-            comm.CommandText = "insert into Coupon Values('"+coupon.CouponCode+"','"+coupon.AdminId+"','"+coupon.UserId+"') ";
+            comm.CommandText = "insert into Coupon Values('"+coupon.CouponCode+"','"+coupon.DiscountAmount+"','"+coupon.AdminId+"','"+coupon.UserId+"') ";
             comm.Connection = conn;
             conn.Open();
             int row = comm.ExecuteNonQuery();
@@ -52,9 +52,10 @@ namespace BookStore.Models
             {
                 int CouponId = Convert.ToInt32(reader["CouponId"]);
                 string CouponCode = reader["CouponCode"].ToString();
+                int DiscountAmount = Convert.ToInt32(reader["DiscountAmount"]);
                 int AdminId = Convert.ToInt32(reader["AdminId"]);
                 int UserId = Convert.ToInt32(reader["UserId"]);
-                Coupons.Add(new Coupon(CouponId,CouponCode,AdminId,UserId));
+                Coupons.Add(new Coupon(CouponId,CouponCode,DiscountAmount,AdminId,UserId));
 
             }
             conn.Close();
@@ -72,9 +73,10 @@ namespace BookStore.Models
             {
                 int CouponId = Convert.ToInt32(reader["CouponId"]);
                 string CouponCode = reader["CouponCode"].ToString();
+                int DiscountAmount = Convert.ToInt32(reader["DiscountAmount"]);
                 int AdminId = Convert.ToInt32(reader["AdminId"]);
                 int UserId = Convert.ToInt32(reader["UserId"]);
-                Coupons.Add(new Coupon(CouponId, CouponCode, AdminId, UserId));
+                Coupons.Add(new Coupon(CouponId, CouponCode,DiscountAmount ,AdminId, UserId));
 
             }
             conn.Close();
