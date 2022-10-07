@@ -9,7 +9,9 @@ namespace BookStore.Models
     internal interface IOrderItemRepository
     {
         List<OrderItem> GetOrderItems(int OrderId);
+        List<OrderBooks> GetOrderBooksById(int OrderId);
         List<OrderBooks> GetAllOrderBooks(int UserId);
+        List<OrderBooks> GetOrderBooks();
         List<OrderBooks> GetNewOrderBooks(int UserId, int status);
         OrderItem AddOrderItem(OrderItem orderItem);
         void DeleteOrderItem(int OrderItemId);

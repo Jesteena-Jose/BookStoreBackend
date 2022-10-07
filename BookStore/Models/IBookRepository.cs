@@ -8,6 +8,7 @@ namespace BookStore.Models
 {
     internal interface IBookRepository
     {
+        List<Book> GetBestBooks();
         List<Book> GetAllBooks();
         List<Book> GetBookByCat(int CatId);
         List<Book> GetBookByName(string Title);

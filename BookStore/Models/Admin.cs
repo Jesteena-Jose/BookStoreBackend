@@ -18,4 +18,16 @@ namespace BookStore.Models
         public string Username { get; set; }
         public string Password { get; set; }
     }
+
+    public class AdminLogin
+    {
+        public AdminLogin(string username, string password)
+        {
+            Username = username;
+            Password = password;
+        }
+
+        public string Username { get; set; }
+        public string Password { get; set; }
+    }
 }

@@ -18,18 +18,21 @@ namespace BookStore.Models
             comm = new SqlCommand();
         }
 
-        public Order AddOrder(Order order)
+        public decimal AddOrder(Order order)
         {
             comm.CommandText = "insert into [Order](TotalPrice,OrderStatus,DeliveryDate,AddressId,UserId) Values("+order.TotalPrice+",'"+order.OrderStatus+"','"+order.DeliveryDate+"',"+order.AddressId+","+order.UserId+")";
             comm.Connection = conn;
             conn.Open();
             int row = comm.ExecuteNonQuery();
+            comm.CommandText = "Select @@Identity as newId from [Order]";
+            var OrderId = comm.ExecuteScalar();
             conn.Close();
             if (row > 0)
             {
-                return order;
+                Console.WriteLine(OrderId);
+                return (decimal)OrderId;
             }
-            return null;
+            return 0;
         }
 
         public void DeleteOrder(int OrderId)

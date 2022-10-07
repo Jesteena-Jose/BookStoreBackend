@@ -9,7 +9,7 @@ namespace BookStore.Models
     internal interface IOrderRepository
     {
         List<Order> GetOrders(int UserId);
-        Order AddOrder(Order order);
+        decimal AddOrder(Order order);
         void DeleteOrder(int OrderId);
         void UpdateOrder(int OrderId, Order order);
     }

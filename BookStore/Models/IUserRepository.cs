@@ -13,5 +13,6 @@ namespace BookStore.Models
         User AddUser(User user);
         void DeleteUser(int UserId);
         void UpdateUser(int UserId, User user);
+        string UpdateStatus(int UserId, string status);
     }
 }

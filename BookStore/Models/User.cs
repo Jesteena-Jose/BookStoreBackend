@@ -28,4 +28,28 @@ namespace BookStore.Models
         public int PhoneNo { get; set; }
         public string ActiveStatus { get; set; }
     }
+
+    public class Login
+    {
+        public Login(string email, string password)
+        {
+            Email = email;
+            Password = password;
+        }
+
+        public string Email { get; set; }
+        public string Password { get; set; }
+    }
+
+    public class Status
+    {
+        public Status(int userId, string activeStatus)
+        {
+            UserId = userId;
+            ActiveStatus = activeStatus;
+        }
+
+        public int UserId { get; set; }
+        public string ActiveStatus { get; set; }
+    }
 }

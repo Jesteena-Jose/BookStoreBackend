@@ -19,7 +19,7 @@ namespace BookStore.Models
         }
         public Cart AddCart(Cart cart)
         {
-            comm.CommandText = "insert into Cart(TotalPrice,AddressId,UserId) values('"+cart.TotalPrice+"','"+cart.AddressId+"','"+cart.UserId+"')";
+            comm.CommandText = "insert into Cart(UserId) values('"+cart.UserId+"')";
             comm.Connection = conn;
             conn.Open();
             int row = comm.ExecuteNonQuery();

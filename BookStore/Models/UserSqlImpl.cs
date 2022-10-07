@@ -95,9 +95,19 @@ namespace BookStore.Models
             return null;
         }
 
+        public string UpdateStatus(int UserId, string status)
+        {
+            comm.CommandText = "Update [User] set ActiveStatus='" + status + "' where UserId=" + UserId;
+            comm.Connection = conn;
+            conn.Open();
+            int row = comm.ExecuteNonQuery();
+            conn.Close();
+            return status;
+        }
+
         public void UpdateUser(int UserId, User user)
         {
-            comm.CommandText = "Update [User] set Name='"+user.Name+"',Email='"+user.Email+"',Password='"+user.Password+"',ActiveStatus='"+user.ActiveStatus+"',PhoneNo="+user.PhoneNo+" where UserId=" + UserId;
+            comm.CommandText = "Update [User] set Name='"+user.Name+"',Email='"+user.Email+"',PhoneNo="+user.PhoneNo+" where UserId=" + UserId;
             comm.Connection = conn;
             conn.Open();
             int row = comm.ExecuteNonQuery();

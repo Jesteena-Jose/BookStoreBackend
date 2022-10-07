@@ -70,10 +70,39 @@ namespace BookStore.Models
             return books;
         }
 
+        public List<Book> GetBestBooks()
+        {
+            List<Book> books = new List<Book>();
+            comm.CommandText = "select Top 4 * from Book";
+            conn.Open();
+            comm.Connection = conn;
+            SqlDataReader reader = comm.ExecuteReader();
+            while (reader.Read())
+            {
+                int BookId = Convert.ToInt32(reader["BookId"]);
+                int CategoryId = Convert.ToInt32(reader["CategoryId"]);
+                string Title = reader["Title"].ToString();
+                string Author = reader["Author"].ToString();
+                string ISBN = reader["ISBN"].ToString();
+                int Year = Convert.ToInt32(reader["Year"]);
+                int Price = Convert.ToInt32(reader["Price"]);
+                string Description = reader["Description"].ToString();
+                string Position = reader["Position"].ToString();
+                int Status = Convert.ToInt32(reader["Status"]);
+                string Image = reader["Image"].ToString();
+                books.Add(new Book(BookId, CategoryId, Title, Author, ISBN, Year, Price, Description, Position, Status, Image));
+
+
+            }
+            conn.Close();
+            return books;
+
+        }
+
         public List<Book> GetBookByAuthor(string GAuthor)
         {
             List<Book> books = new List<Book>();
-            comm.CommandText = "select * from Book where Author="+GAuthor;
+            comm.CommandText = "select * from Book where Author='"+GAuthor+"'";
             conn.Open();
             comm.Connection = conn;
             SqlDataReader reader = comm.ExecuteReader();
@@ -157,7 +186,7 @@ namespace BookStore.Models
         public Book GetBookByISBN(string GISBN)
         {
             Book book;
-            comm.CommandText = "select * from Book where ISBN="+GISBN;
+            comm.CommandText = "select * from Book where ISBN='"+GISBN+"'";
             conn.Open();
             comm.Connection = conn;
             SqlDataReader reader = comm.ExecuteReader();
@@ -185,7 +214,7 @@ namespace BookStore.Models
         public List<Book> GetBookByName(string GTitle)
         {
             List<Book> books = new List<Book>();
-            comm.CommandText = "select * from Book where Title="+GTitle;
+            comm.CommandText = "select * from Book where Title='"+GTitle+"'";
             conn.Open();
             comm.Connection = conn;
             SqlDataReader reader = comm.ExecuteReader();

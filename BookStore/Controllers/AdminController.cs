@@ -4,10 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using BookStore.Models;
 
 namespace BookStore.Controllers
 {
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class AdminController : ApiController
     {
         private IAdminRepository repository;
@@ -15,10 +17,10 @@ namespace BookStore.Controllers
         {
             repository = new AdminSqlImpl();
         }
-        [HttpGet]
-        public IHttpActionResult Get(string Username, string Password)
+        [HttpPost]
+        public IHttpActionResult Post(AdminLogin login)
         {
-            var data = repository.GetAdmin(Username, Password);
+            var data = repository.GetAdmin(login.Username, login.Password);
             return Ok(data);
         }
     }
